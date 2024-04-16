@@ -1,0 +1,7 @@
+{
+  "name": "safarti",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
