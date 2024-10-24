@@ -1,14 +1,14 @@
-import { Component, Input } from '@angular/core';
-import { LoginDTO, RegisterDTO } from '../models/authentication';
-import { JwtAuth } from '../models/jwtAuth';
+import { Component, Input, OnInit } from '@angular/core';
+import { AuthResponseDTO, LoginDTO, RegisterDTO } from '../models/authentication';
 import { AuthenticationService } from '../services/authentication.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-explore-container',
   templateUrl: './explore-container.component.html',
   styleUrls: ['./explore-container.component.scss'],
 })
-export class ExploreContainerComponent {
+export class ExploreContainerComponent implements OnInit{
 
   loginDto: LoginDTO = {
     email: '',
@@ -18,20 +18,25 @@ export class ExploreContainerComponent {
     name: '',
     email: '',
     password: ''
-  };
-  jwtDto!: JwtAuth;
+  } ;
+  authResponseDto!: AuthResponseDTO;
 
-  constructor(private authService: AuthenticationService){
+  constructor(private authService: AuthenticationService, private translate: TranslateService){
 
+  }
+  ngOnInit(): void {
+    console.log(this.translate.currentLang);
   }
 
   register(registerDto: RegisterDTO){
-    this.authService.register(registerDto).subscribe();
+    this.authService.register(registerDto)
+    .then((response: AuthResponseDTO) => {
+      console.log(response);
+    })
+    .catch();
   }
 
   login(loginDto: LoginDTO){
-    this.authService.login(loginDto).subscribe((jwtDto) => {
-      localStorage.setItem('jwtToken', jwtDto.token);
-    });
+    this.authService.login(loginDto);
   }
 }

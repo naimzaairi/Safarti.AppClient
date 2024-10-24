@@ -1,16 +1,17 @@
-<div id="container">
-  <h2>Register</h2>
+<!-- <div id="container">
+  <h2>Register {{ 'register' | translate }}</h2>
   <div>
     <input placeholder="name" [(ngModel)]="registerDto.name"/>
     <input placeholder="email" [(ngModel)]="registerDto.email"/>
     <input placeholder="password" [(ngModel)]="registerDto.password"/>
-    <button (click)="register(registerDto)">Register</button>
+    <button *ngIf="registerDto" (click)="register(registerDto)">Register</button>
   </div>
 
   <h2>Login</h2>
   <div>
     <input placeholder="email" [(ngModel)]="loginDto.email"/>
     <input placeholder="password" [(ngModel)]="loginDto.password"/>
-    <button (click)="login(loginDto)">Login</button>
+    <button *ngIf="loginDto" (click)="login(loginDto)">Login</button>
   </div>
-</div>
+</div> -->
+<h2>Home</h2>
